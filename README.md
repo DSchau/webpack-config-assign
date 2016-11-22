@@ -1,6 +1,8 @@
 # webpack-config-assign
 
-![Build status](https://travis-ci.org/DSchau/webpack-config-assign.svg)
+[![Build status](https://travis-ci.org/DSchau/webpack-config-assign.svg)](https://travis-ci.org/DSchau/webpack-config-assign)
+[![codecov](https://codecov.io/gh/DSchau/webpack-config-assign/branch/master/graph/badge.svg)](https://codecov.io/gh/DSchau/webpack-config-assign)
+[![NPM Version](https://img.shields.io/npm/v/webpack-config-assign.svg)](https://www.npmjs.com/package/webpack-config-assign)
 
 A utility to "smartly" merge/assign a series of webpack configs, typically a "base" config then merged with one to many environment configs (e.g. development, test, production, etc.)
 
