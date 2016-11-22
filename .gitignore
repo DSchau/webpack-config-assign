@@ -6,6 +6,10 @@ bower_components/
 lib/
 dist/
 
+# Code coverage
+coverage/
+.nyc_output/
+
 # OS generated files
 .DS_Store
 .DS_Store?
