@@ -1,5 +1,7 @@
 # webpack-config-assign
 
+![Build status](https://travis-ci.org/DSchau/webpack-config-assign.svg)
+
 A utility to "smartly" merge/assign a series of webpack configs, typically a "base" config then merged with one to many environment configs (e.g. development, test, production, etc.)
 
 ## Install
