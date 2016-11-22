@@ -1,0 +1,20 @@
+# Package files
+node_modules/
+bower_components/
+
+# Distributed files
+lib/
+dist/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# NPM files
+npm-debug.log
+www
