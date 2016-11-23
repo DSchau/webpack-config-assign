@@ -13,6 +13,49 @@ test('it returns clone of object', t => {
   t.not(webpackConfigAssign(webpackConfig), webpackConfig);
 });
 
+test('if first argument is falsy, it uses empty object', t => {
+  const extendConfig = {
+    entry: [
+      './index'
+    ]
+  };
+
+  t.deepEqual(webpackConfigAssign(null, extendConfig), extendConfig);
+});
+
+test('if extend configs are falsy, ignores them', t => {
+  const webpackConfig = {
+    entry: [
+      './index'
+    ]
+  };
+
+  t.deepEqual(webpackConfigAssign(webpackConfig, null, false, undefined), webpackConfig);
+});
+
+test('if extension object is a function, calls with current config', t => {
+  const webpackConfig = {
+    entry: [
+      './index'
+    ]
+  };
+
+  const extensionConfigFn = (config) => {
+    return {
+      entry: [
+        './vendor'
+      ].concat(config.entry)
+    };
+  };
+
+  t.deepEqual(webpackConfigAssign(webpackConfig, extensionConfigFn), {
+    entry: [
+      './vendor',
+      './index'
+    ]
+  })
+});
+
 test('it returns original config if only one argument', t => {
   const webpackConfig = {
     entry: {}
