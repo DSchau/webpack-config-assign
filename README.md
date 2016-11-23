@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/DSchau/webpack-config-assign/badge.svg?branch=master)](https://coveralls.io/github/DSchau/webpack-config-assign?branch=master)
 [![NPM Version](https://img.shields.io/npm/v/webpack-config-assign.svg)](https://www.npmjs.com/package/webpack-config-assign)
 
-A utility to "smartly" merge/assign a series of webpack configs, typically a "base" config then merged with one to many environment configs (e.g. development, test, production, etc.)
+A utility to "smartly" merge/assign a series of webpack configs, typically a "base" config then merged with one to many environment configs (e.g. development, test, production, etc.). Think of it like an intelligent [`Object.assign`][object-assign], but tailored specifically for Webpack configs
 
 ## Install
 
@@ -51,3 +51,5 @@ module.exports = function(env) {
   return webpackConfigAssign(baseConfig, developmentConfig);
 };
 ```
+
+[object-assign]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
