@@ -146,12 +146,11 @@
 
 <p>now we're cooking. We are using the excellent <code>webpack-dashboard</code> plugin, and we're also doing some nice webpack hot reloading with the webpack dev server. Now, let's get to merging those configurations</p>
 
-<pre lang="webpack.config.js"><code>const webpackConfigAssign = require('webpack-config-assign');
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">webpackConfigAssign</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>webpack-config-assign<span class="pl-pds">'</span></span>);
 
-const devConfig = process.env.NODE_ENV === 'development' ? require('./webpack.config.development') : {};
+<span class="pl-k">const</span> <span class="pl-c1">devConfig</span> <span class="pl-k">=</span> <span class="pl-c1">process</span>.<span class="pl-smi">env</span>.<span class="pl-c1">NODE_ENV</span> <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>development<span class="pl-pds">'</span></span> <span class="pl-k">?</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./webpack.config.development<span class="pl-pds">'</span></span>) <span class="pl-k">:</span> {};
 
-module.exports = webpackConfigAssign(require('./webpack.config.base'), devConfig);
-</code></pre>
+<span class="pl-c1">module</span>.<span class="pl-smi">exports</span> <span class="pl-k">=</span> <span class="pl-en">webpackConfigAssign</span>(<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>./webpack.config.base<span class="pl-pds">'</span></span>), devConfig);</pre></div>
 
 <p>and like that, we're done. Easy as pie! Let's wrap up what specifically happened:</p>
 
