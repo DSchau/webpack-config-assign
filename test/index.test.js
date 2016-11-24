@@ -2,11 +2,11 @@ import path from 'path';
 
 import webpackConfigAssign from '../src/';
 
-it('it returns empty config if 0 arguments', () => {
+it('returns empty config if 0 arguments', () => {
   expect(webpackConfigAssign()).toEqual({});
 });
 
-it('it returns clone of object', () => {
+it('returns clone of object', () => {
   const webpackConfig = {};
 
   expect(webpackConfigAssign(webpackConfig)).not.toBe(webpackConfig);
@@ -101,14 +101,14 @@ it('if extension object(s) are functions, calls with rolling merged config', () 
   });
 });
 
-it('it returns original config if only one argument', () => {
+it('returns original config if only one argument', () => {
   const webpackConfig = {
     entry: {}
   };
   expect(webpackConfigAssign(webpackConfig)).toEqual(webpackConfig);
 });
 
-it('it returns merged config if multiple arguments', () => {
+it('returns merged config if multiple arguments', () => {
   const configs = [
     'base',
     'extend',

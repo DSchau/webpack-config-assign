@@ -2,7 +2,7 @@ import path from 'path';
 
 const assignLoaders = require(path.resolve('./src/util/assign-loaders'));
 
-it('it returns base loaders if 0 extend loaders', () => {
+it('returns base loaders if 0 extend loaders', () => {
   const base = [
     {
       test: /\.js$/,
@@ -13,7 +13,7 @@ it('it returns base loaders if 0 extend loaders', () => {
   expect(assignLoaders(base)).toEqual(base);
 });
 
-it('it returns extend loaders if 0 base loaders', () => {
+it('returns extend loaders if 0 base loaders', () => {
   const extend = [
     {
       test: /\.css$/,
@@ -28,7 +28,7 @@ it('it returns extend loaders if 0 base loaders', () => {
   expect(assignLoaders([], extend)).toEqual(extend);
 });
 
-it('it extends base loaders if n loaders (that do not match)', () => {
+it('extends base loaders if n loaders (that do not match)', () => {
   const base = [
     {
       test: /\.js$/,
@@ -46,7 +46,7 @@ it('it extends base loaders if n loaders (that do not match)', () => {
   expect(assignLoaders(base, extend)).toEqual(base.concat(extend));
 });
 
-it('it replaces base loader if extend loaders test matches', () => {
+it('replaces base loader if extend loaders test matches', () => {
   const base = [
     {
       test: /\.css$/,
@@ -64,7 +64,7 @@ it('it replaces base loader if extend loaders test matches', () => {
   expect(assignLoaders(base, extend)).toEqual(extend);
 });
 
-it('it replaces multiple loaders if multiple match', () => {
+it('replaces multiple loaders if multiple match', () => {
   const base = [
     {
       test: /\.css$/,
@@ -90,7 +90,7 @@ it('it replaces multiple loaders if multiple match', () => {
   expect(assignLoaders(base, extend)).toEqual(extend);
 });
 
-it('it keeps existing loaders in place, and extends matching loaders', () => {
+it('keeps existing loaders in place, and extends matching loaders', () => {
   const base = [
     {
       test: /\.js$/,

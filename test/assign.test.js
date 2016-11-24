@@ -2,11 +2,11 @@ import assign from 'object-assign';
 
 import webpackAssign from '../src/assign';
 
-it('it returns empty object if no extensions', () => {
+it('returns empty object if no extensions', () => {
   expect(webpackAssign()).toEqual({});
 });
 
-it('it returns base config if nothing to extend', () => {
+it('returns base config if nothing to extend', () => {
   const webpackConfig = {
     entry: {
       name: './src/index'
@@ -16,7 +16,7 @@ it('it returns base config if nothing to extend', () => {
   expect(webpackAssign(webpackConfig)).toEqual(webpackConfig);
 });
 
-it('it extends non-special properties with one extension', () => {
+it('extends non-special properties with one extension', () => {
   const webpackConfig = {
     entry: {
       name: './src/index'
@@ -34,7 +34,7 @@ it('it extends non-special properties with one extension', () => {
   });
 });
 
-it('it replaces non-special properties with one extension', () => {
+it('replaces non-special properties with one extension', () => {
   const webpackConfig = {
     entry: {
       name: './src/index'
@@ -50,7 +50,7 @@ it('it replaces non-special properties with one extension', () => {
   expect(webpackAssign(webpackConfig, extendConfig)).toEqual(extendConfig);
 });
 
-it('it handles array entry by using last array', () => {
+it('handles array entry by using last array', () => {
   const webpackConfig = {
     entry: [
       'react-hot/webpack',
@@ -79,7 +79,7 @@ it('replaces dev-tool', () => {
   expect(webpackAssign(webpackConfig, extendConfig)).toEqual(extendConfig);
 });
 
-it('it merges webpack-dev-server property', () => {
+it('merges webpack-dev-server property', () => {
   const webpackConfig = {
     webpackDevServer: {
       noInfo: true,
@@ -98,7 +98,7 @@ it('it merges webpack-dev-server property', () => {
   });
 });
 
-it('it concats plugins', () => {
+it('concats plugins', () => {
   const webpackConfig = {
     plugins: [
       'html-webpack-plugin'
@@ -116,7 +116,7 @@ it('it concats plugins', () => {
   });
 });
 
-it('it extends module.loaders', () => {
+it('extends module.loaders', () => {
   const webpackConfig = {
     module: {
       loaders: [
@@ -146,7 +146,7 @@ it('it extends module.loaders', () => {
   });
 });
 
-it('it replaces module.loaders, if test matches', () => {
+it('replaces module.loaders, if test matches', () => {
   const webpackConfig = {
     module: {
       loaders: [
@@ -172,7 +172,7 @@ it('it replaces module.loaders, if test matches', () => {
   expect(webpackAssign(webpackConfig, extendConfig)).toEqual(extendConfig);
 });
 
-it('it extends module.rules', () => {
+it('extends module.rules', () => {
   const webpackConfig = {
     module: {
       rules: [
@@ -202,7 +202,7 @@ it('it extends module.rules', () => {
   });
 });
 
-it('it replaces module.rules, if test matches', () => {
+it('replaces module.rules, if test matches', () => {
   const webpackConfig = {
     module: {
       rules: [
