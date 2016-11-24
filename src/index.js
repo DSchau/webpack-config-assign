@@ -6,7 +6,7 @@ module.exports = function webpackConfigAssign(base, ...extensions) {
   return extensions
     .reduce((config, extension) => {
       let configExtension = extension || {};
-      if ( typeof configExtension === 'function' ) {
+      if (typeof configExtension === 'function') {
         configExtension = configExtension(config);
       }
       return webpackAssign(config, configExtension);
