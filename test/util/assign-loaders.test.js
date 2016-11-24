@@ -1,9 +1,8 @@
-import test from 'ava';
 import path from 'path';
 
 const assignLoaders = require(path.resolve('./src/util/assign-loaders'));
 
-test('it returns base loaders if 0 extend loaders', t => {
+it('it returns base loaders if 0 extend loaders', () => {
   const base = [
     {
       test: /\.js$/,
@@ -11,10 +10,10 @@ test('it returns base loaders if 0 extend loaders', t => {
     }
   ];
 
-  t.deepEqual(assignLoaders(base), base);
+  expect(assignLoaders(base)).toEqual(base);
 });
 
-test('it returns extend loaders if 0 base loaders', t => {
+it('it returns extend loaders if 0 base loaders', () => {
   const extend = [
     {
       test: /\.css$/,
@@ -26,10 +25,10 @@ test('it returns extend loaders if 0 base loaders', t => {
     }
   ];
 
-  t.deepEqual(assignLoaders([], extend), extend);
+  expect(assignLoaders([], extend)).toEqual(extend);
 });
 
-test('it extends base loaders if n loaders (that do not match)', t => {
+it('it extends base loaders if n loaders (that do not match)', () => {
   const base = [
     {
       test: /\.js$/,
@@ -44,10 +43,10 @@ test('it extends base loaders if n loaders (that do not match)', t => {
     }
   ];
 
-  t.deepEqual(assignLoaders(base, extend), base.concat(extend));
+  expect(assignLoaders(base, extend)).toEqual(base.concat(extend));
 });
 
-test('it replaces base loader if extend loaders test matches', t => {
+it('it replaces base loader if extend loaders test matches', () => {
   const base = [
     {
       test: /\.css$/,
@@ -62,10 +61,10 @@ test('it replaces base loader if extend loaders test matches', t => {
     }
   ];
 
-  t.deepEqual(assignLoaders(base, extend), extend);
+  expect(assignLoaders(base, extend)).toEqual(extend);
 });
 
-test('it replaces multiple loaders if multiple match', t => {
+it('it replaces multiple loaders if multiple match', () => {
   const base = [
     {
       test: /\.css$/,
@@ -88,10 +87,10 @@ test('it replaces multiple loaders if multiple match', t => {
     }
   ];
 
-  t.deepEqual(assignLoaders(base, extend), extend);
+  expect(assignLoaders(base, extend)).toEqual(extend);
 });
 
-test('it keeps existing loaders in place, and extends matching loaders', t => {
+it('it keeps existing loaders in place, and extends matching loaders', () => {
   const base = [
     {
       test: /\.js$/,
@@ -110,7 +109,7 @@ test('it keeps existing loaders in place, and extends matching loaders', t => {
     }
   ];
 
-  t.deepEqual(assignLoaders(base, extend), [
+  expect(assignLoaders(base, extend)).toEqual([
     base[0],
     extend[0]
   ])

@@ -1,23 +1,22 @@
-import test from 'ava';
 import assign from 'object-assign';
 
 import webpackAssign from '../src/assign';
 
-test('it returns empty object if no extensions', t => {
-  t.deepEqual(webpackAssign(), {});
+it('it returns empty object if no extensions', () => {
+  expect(webpackAssign()).toEqual({});
 });
 
-test('it returns base config if nothing to extend', t => {
+it('it returns base config if nothing to extend', () => {
   const webpackConfig = {
     entry: {
       name: './src/index'
     }
   };
 
-  t.deepEqual(webpackAssign(webpackConfig), webpackConfig);
+  expect(webpackAssign(webpackConfig)).toEqual(webpackConfig);
 });
 
-test('it extends non-special properties with one extension', t => {
+it('it extends non-special properties with one extension', () => {
   const webpackConfig = {
     entry: {
       name: './src/index'
@@ -30,12 +29,12 @@ test('it extends non-special properties with one extension', t => {
     }
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), {
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual({
     entry: assign(webpackConfig.entry, extendConfig.entry)
   });
 });
 
-test('it replaces non-special properties with one extension', t => {
+it('it replaces non-special properties with one extension', () => {
   const webpackConfig = {
     entry: {
       name: './src/index'
@@ -48,10 +47,10 @@ test('it replaces non-special properties with one extension', t => {
     }
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), extendConfig);
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual(extendConfig);
 });
 
-test('it handles array entry by using last array', t => {
+it('it handles array entry by using last array', () => {
   const webpackConfig = {
     entry: [
       'react-hot/webpack',
@@ -65,10 +64,10 @@ test('it handles array entry by using last array', t => {
     ]
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), extendConfig);
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual(extendConfig);
 });
 
-test('replaces dev-tool', t => {
+it('replaces dev-tool', () => {
   const webpackConfig = {
     devtool: 'cheap-eval-source-map'
   };
@@ -77,10 +76,10 @@ test('replaces dev-tool', t => {
     devtool: 'source-map'
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), extendConfig);
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual(extendConfig);
 });
 
-test('it merges webpack-dev-server property', t => {
+it('it merges webpack-dev-server property', () => {
   const webpackConfig = {
     webpackDevServer: {
       noInfo: true,
@@ -94,12 +93,12 @@ test('it merges webpack-dev-server property', t => {
     }
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), {
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual({
     webpackDevServer: assign(webpackConfig.webpackDevServer, extendConfig.webpackDevServer)
   });
 });
 
-test('it concats plugins', t => {
+it('it concats plugins', () => {
   const webpackConfig = {
     plugins: [
       'html-webpack-plugin'
@@ -112,12 +111,12 @@ test('it concats plugins', t => {
     ]
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), {
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual({
     plugins: webpackConfig.plugins.concat(extendConfig.plugins)
   });
 });
 
-test('it extends module.loaders', t => {
+it('it extends module.loaders', () => {
   const webpackConfig = {
     module: {
       loaders: [
@@ -140,14 +139,14 @@ test('it extends module.loaders', t => {
     }
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), {
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual({
     module: {
       loaders: webpackConfig.module.loaders.concat(extendConfig.module.loaders)
     }
   });
 });
 
-test('it replaces module.loaders, if test matches', t => {
+it('it replaces module.loaders, if test matches', () => {
   const webpackConfig = {
     module: {
       loaders: [
@@ -170,10 +169,10 @@ test('it replaces module.loaders, if test matches', t => {
     }
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), extendConfig);
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual(extendConfig);
 });
 
-test('it extends module.rules', t => {
+it('it extends module.rules', () => {
   const webpackConfig = {
     module: {
       rules: [
@@ -196,14 +195,14 @@ test('it extends module.rules', t => {
     }
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), {
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual({
     module: {
       rules: webpackConfig.module.rules.concat(extendConfig.module.rules)
     }
   });
 });
 
-test('it replaces module.rules, if test matches', t => {
+it('it replaces module.rules, if test matches', () => {
   const webpackConfig = {
     module: {
       rules: [
@@ -226,5 +225,5 @@ test('it replaces module.rules, if test matches', t => {
     }
   };
 
-  t.deepEqual(webpackAssign(webpackConfig, extendConfig), extendConfig);
+  expect(webpackAssign(webpackConfig, extendConfig)).toEqual(extendConfig);
 });

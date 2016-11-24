@@ -1,24 +1,23 @@
-import test from 'ava';
 import assign from 'object-assign';
 import path from 'path';
 
 const assignModule = require(path.resolve('./src/util/assign-module'));
 
-test('it returns non-loader/rules config as-is', t => {
+it('it returns non-loader/rules config as-is', () => {
   const baseConfig = {
     noParse: /jquery/
   };
 
-  t.deepEqual(assignModule(baseConfig), baseConfig);
+  expect(assignModule(baseConfig)).toEqual(baseConfig);
 });
 
-test('it returns a new (cloned) object', t => {
+it('it returns a new (cloned) object', () => {
   const base = {};
 
-  t.not(assignModule(base), base);
+  expect(assignModule(base)).not.toBe(base);
 });
 
-test('it extends non-loader/rules config if extension', t => {
+it('it extends non-loader/rules config if extension', () => {
   const baseConfig = {
     noParse: /jquery/
   };
@@ -27,10 +26,10 @@ test('it extends non-loader/rules config if extension', t => {
     noParse: /jquery|react/i
   };
 
-  t.deepEqual(assignModule(baseConfig, extendConfig), extendConfig);
+  expect(assignModule(baseConfig, extendConfig)).toEqual(extendConfig);
 });
 
-test('it includes non-loader config when loaders present', t => {
+it('it includes non-loader config when loaders present', () => {
   const baseConfig = {
     noParse: /jquery/
   };
@@ -44,10 +43,10 @@ test('it includes non-loader config when loaders present', t => {
     ]
   };
 
-  t.deepEqual(assignModule(baseConfig, extendConfig), assign(baseConfig, extendConfig));
+  expect(assignModule(baseConfig, extendConfig)).toEqual(assign(baseConfig, extendConfig));
 });
 
-test('it returns loaders property if not extended', t => {
+it('it returns loaders property if not extended', () => {
   const baseConfig = {
     loaders: [
       {
@@ -57,10 +56,10 @@ test('it returns loaders property if not extended', t => {
     ]
   };
 
-  t.deepEqual(assignModule(baseConfig), baseConfig);
+  expect(assignModule(baseConfig)).toEqual(baseConfig);
 });
 
-test('it extends loaders property if not extended', t => {
+it('it extends loaders property if not extended', () => {
   const baseConfig = {
     loaders: [
       {
@@ -79,10 +78,10 @@ test('it extends loaders property if not extended', t => {
     ]
   };
 
-  t.deepEqual(assignModule(baseConfig, extendConfig), extendConfig);
+  expect(assignModule(baseConfig, extendConfig)).toEqual(extendConfig);
 });
 
-test('it returns rules property if not extended', t => {
+it('it returns rules property if not extended', () => {
   const baseConfig = {
     rules: [
       {
@@ -92,10 +91,10 @@ test('it returns rules property if not extended', t => {
     ]
   };
 
-  t.deepEqual(assignModule(baseConfig), baseConfig);
+  expect(assignModule(baseConfig)).toEqual(baseConfig);
 });
 
-test('it extends rules property if not extended', t => {
+it('it extends rules property if not extended', () => {
   const baseConfig = {
     rules: [
       {
@@ -114,10 +113,10 @@ test('it extends rules property if not extended', t => {
     ]
   };
 
-  t.deepEqual(assignModule(baseConfig, extendConfig), extendConfig);
+  expect(assignModule(baseConfig, extendConfig)).toEqual(extendConfig);
 });
 
-test('it throws error if module.rules and module.loaders are used in separate configs', t => {
+it('it throws error if module.rules and module.loaders are used in separate configs', () => {
   const baseConfig = {
     loaders: [
       {
@@ -136,7 +135,7 @@ test('it throws error if module.rules and module.loaders are used in separate co
     ]
   };
 
-  t.throws(() => {
+  expect(() => {
     assignModule(baseConfig, extendConfig);
-  }, Error);
+  }).toThrowError(Error);
 });
