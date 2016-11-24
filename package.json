@@ -10,7 +10,7 @@
     "coverage": "npm run test -- --coverage --no-cache",
     "lint": "eslint \"src/**/*.js\"",
     "prepublishOnly": "npm run build",
-    "test": "cross-env NODE_ENV=test jest "
+    "test": "cross-env NODE_ENV=test jest"
   },
   "keywords": [
     "webpack",
