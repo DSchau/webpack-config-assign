@@ -1,27 +1,26 @@
-import test from 'ava';
 import path from 'path';
 
 const assignPlugins = require(path.resolve('./src/util/assign-plugins'));
 
-test('it returns original array if extend undefined', t => {
+it('it returns original array if extend undefined', () => {
   const base = [
     'some-plugin'
   ];
 
-  t.deepEqual(assignPlugins(base, undefined), base);
+  expect(assignPlugins(base, undefined)).toEqual(base);
 });
 
-test('returns extend array if base undefined', t => {
+it('returns extend array if base undefined', () => {
   const base = undefined;
 
   const extend = [
     'some-plugin'
   ];
 
-  t.deepEqual(assignPlugins(base, extend), extend);
+  expect(assignPlugins(base, extend)).toEqual(extend);
 });
 
-test('it concats array if extend is an array', t => {
+it('it concats array if extend is an array', () => {
   const base = [
     'some-plugin'
   ];
@@ -30,5 +29,5 @@ test('it concats array if extend is an array', t => {
     'some-other-plugin'
   ];
 
-  t.deepEqual(assignPlugins(base, extend), base.concat(extend));
+  expect(assignPlugins(base, extend)).toEqual(base.concat(extend));
 });
