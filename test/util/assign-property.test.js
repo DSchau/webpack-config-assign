@@ -4,17 +4,17 @@ import path from 'path';
 
 const assignProperty = require(path.resolve('./src/util/assign-property'));
 
-it('it returns string if extend prop is string', () => {
+it('returns string if extend prop is string', () => {
   expect(assignProperty({}, 'str')).toBe('str');
 });
 
-it('it returns RegExp if extend prop is RegExp', () => {
+it('returns RegExp if extend prop is RegExp', () => {
   const expr = /abc/;
   const prop = assignProperty({}, expr);
   expect(regexEqual(prop, expr)).toBe(true);
 });
 
-it('it returns array if an array', () => {
+it('returns array if an array', () => {
   const extend = [
     'react-hot-loader'
   ];
@@ -22,7 +22,7 @@ it('it returns array if an array', () => {
   expect(assignProperty(['red'], extend)).toEqual(extend);
 });
 
-it('it returns a cloned array if an array', () => {
+it('returns a cloned array if an array', () => {
   const extend = [
     'react-hot-loader'
   ];
@@ -30,7 +30,7 @@ it('it returns a cloned array if an array', () => {
   expect(assignProperty(null, extend)).not.toBe(extend);
 });
 
-it('it extends an object, if extend prop is object', () => {
+it('extends an object, if extend prop is object', () => {
   const base = {
     app: './src/index'
   };

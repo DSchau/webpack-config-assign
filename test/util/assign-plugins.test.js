@@ -2,7 +2,7 @@ import path from 'path';
 
 const assignPlugins = require(path.resolve('./src/util/assign-plugins'));
 
-it('it returns original array if extend undefined', () => {
+it('returns original array if extend undefined', () => {
   const base = [
     'some-plugin'
   ];
@@ -20,7 +20,7 @@ it('returns extend array if base undefined', () => {
   expect(assignPlugins(base, extend)).toEqual(extend);
 });
 
-it('it concats array if extend is an array', () => {
+it('concats array if extend is an array', () => {
   const base = [
     'some-plugin'
   ];
