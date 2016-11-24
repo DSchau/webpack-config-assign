@@ -32,6 +32,20 @@ it('if extend configs are falsy, ignores them', () => {
   expect(webpackConfigAssign(webpackConfig, null, false, undefined)).toEqual(webpackConfig);
 });
 
+it('if first argument is function, calls with environment object', () => {
+  const webpackConfig = (env) => {
+    return {
+      env
+    };
+  };
+
+  const config = webpackConfigAssign(webpackConfig);
+
+  expect(config.env).toBeDefined();
+  expect(config.env.environment).toBeDefined();
+  expect(config.env.env).toBeDefined();
+});
+
 it('if extension object is a function, calls with current config', () => {
   const webpackConfig = {
     entry: [
@@ -55,6 +69,38 @@ it('if extension object is a function, calls with current config', () => {
   })
 });
 
+it('if extension object(s) are functions, calls with rolling merged config', () => {
+  const webpackConfig = {
+    entry: [
+      './index'
+    ]
+  };
+
+  const extensionConfigFn = (config) => {
+    return {
+      entry: [
+        './vendor'
+      ].concat(config.entry)
+    }
+  };
+
+  const extensionConfigOtherFn = (config) => {
+    return {
+      entry: [
+        './polyfills'
+      ].concat(config.entry)
+    };
+  };
+
+  expect(webpackConfigAssign(webpackConfig, extensionConfigFn, extensionConfigOtherFn)).toEqual({
+    entry: [
+      './polyfills',
+      './vendor',
+      './index'
+    ]
+  });
+});
+
 it('it returns original config if only one argument', () => {
   const webpackConfig = {
     entry: {}
@@ -63,14 +109,12 @@ it('it returns original config if only one argument', () => {
 });
 
 it('it returns merged config if multiple arguments', () => {
-  const basePath = path.join(__dirname, '__e2e__');
-
   const configs = [
-    require(path.join(basePath, 'base')),
-    require(path.join(basePath, 'extend')),
-    require(path.join(basePath, 'extend-two')),
-    require(path.join(basePath, 'expected'))
-  ];
+    'base',
+    'extend',
+    'extend-two',
+    'expected'
+  ].map((fixturePath) => require(path.join(__dirname, 'fixtures', fixturePath)));
 
   const [ base, extend, extendTwo, expected ] = configs;
 
