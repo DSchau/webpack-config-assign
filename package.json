@@ -1,6 +1,6 @@
 {
   "name": "webpack-config-assign",
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "description": "A utility to recursively merge webpack config(s)",
   "main": "lib/index.js",
   "esnext:main": "src/index.js",
