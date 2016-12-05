@@ -19,6 +19,10 @@
     "utility"
   ],
   "author": "Dustin Schau <dustinschau@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DSchau/webpack-config-assign"
+  },
   "license": "MIT",
   "dependencies": {
     "is-equal-regex": "~0.1.0",
