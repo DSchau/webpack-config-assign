@@ -5,11 +5,11 @@ import getEnvironment from './util/get-environment';
 
 module.exports = function webpackConfigAssign(base, ...extensions) {
   let baseConfig = base;
-  if ( typeof baseConfig === 'function' ) {
+  if (typeof baseConfig === 'function') {
     const env = getEnvironment();
     baseConfig = baseConfig({
       env,
-      environment: env
+      environment: env,
     });
   }
   return extensions

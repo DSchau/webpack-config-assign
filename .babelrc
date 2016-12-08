@@ -2,9 +2,6 @@
   "presets": [
     "latest"
   ],
-  "plugins": [
-    "transform-runtime"
-  ],
   "env": {
     "test": {
       "sourceMaps": "inline"
